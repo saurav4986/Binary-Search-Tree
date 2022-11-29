@@ -1,8 +1,8 @@
 package com.bridgelabz.BST;
 
-/*(UC-2_Add_size)
-Ability to create the binary tree shown in the figure
-- Check if all are added with using size method in Binary Tree*/
+/*(UC-3_Search_BST)
+Ability to search 63 in the Binary Tree
+- Implement Search method and recursively search left or right nodes to find 63*/
 
 public class BinarySearchTree {
     private TreeNode root;
@@ -55,6 +55,25 @@ public class BinarySearchTree {
         // and traversing the left and right of the bst
     }
 
+    public void search(int key) {
+        if (search(root, key) == null) {
+            System.out.println("Node is not present in the BST");
+        } else {
+            System.out.println("Node found in the BST");
+        }
+    }
+
+    public TreeNode search(TreeNode root, int key) {
+        if (root == null || root.data == key) {
+            return root;
+        }
+        if (key < root.data) {
+            return search(root.left, key);
+        } else {
+            return search(root.right, key);
+        }
+    }
+
     public static void main(String[] args) {
         BinarySearchTree tree = new BinarySearchTree();
         tree.insert(56); // root
@@ -73,5 +92,6 @@ public class BinarySearchTree {
         tree.inOrder(tree.root);// retrieving values in ascending order.
         System.out.println();
         System.out.println("Size of the tree is: " + tree.size());
+        tree.search(63);
     }
 }
